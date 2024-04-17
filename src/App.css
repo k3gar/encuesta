@@ -17,6 +17,7 @@ hr{
   display: flex;
   flex-direction: column;
   max-width: 800px;
+  padding: 12px 0px;
 }
 
 .quiz__welcome__form--container{
@@ -27,7 +28,7 @@ hr{
 
 .quiz__welcome__form--container div label{
   margin-right: 12px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .quiz__welcome__form--container div input{
@@ -35,7 +36,8 @@ hr{
 }
 
 .quiz__welcome__block{
-  margin: 28px 0px;
+  margin: 0px;
+  padding: 8px 0px;
 }
 
 .quiz__container{
@@ -52,7 +54,74 @@ hr{
   margin-right: 12px;
 }
 
-/* CSS */
+.quiz__container--informacion-ingresada{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quiz__container--informacion-ingresada p {
+  margin: 8px 0px;
+  gap: 8px;
+  display: flex;
+}
+.quiz__container--informacion-ingresada p strong{
+  font-weight: 600;
+}
+.quiz__container--global-score{
+  background-color: #0395b0;
+  color: white;
+  padding: 12px;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 70px;
+  border-radius: 8px;
+  margin: 0px;
+  font-weight: 700;
+}
+.quiz__container--global-score-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quiz__container--global-items-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.quiz__container--items-section{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-direction: column-reverse;
+  width: 300px;
+}
+
+.quiz__container--items-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 45px;
+}
+
+.quiz__container--items-text{
+  margin: 8px 0px;
+  font-weight: 400;
+  text-align: center;
+}
+.quiz__container--items-text-score{
+  margin: 0px;
+  font-size: 38px;
+  font-weight: 500;
+  background-color: #dadada;
+  padding: 12px;
+  border-radius: 8px;
+}
+
 .button-9 {
   appearance: button;
   backface-visibility: hidden;
