@@ -23,7 +23,7 @@ function Encuesta({ datos }) {
     const calcularPuntuacionSeccion = (respuestasSeccion) => {
       let puntuacionTotal = 0;
       let pesoTotal = 0;
-    
+
       // Iterar sobre las respuestas de la sección
       Object.values(respuestasSeccion).forEach(respuestas => {
         Object.values(respuestas).forEach(respuesta => {
@@ -33,11 +33,11 @@ function Encuesta({ datos }) {
           }
         });
       });
-    
+
       // Calcular la puntuación ajustada considerando el peso total
       return pesoTotal === 0 ? 0 : Math.round((puntuacionTotal / pesoTotal) * 10);
     };
-      
+
 
     const puntuacionesSecciones = respuestas.map((respuestasSeccion, seccionIndex) => ({
       id: seccionIndex,
@@ -60,7 +60,7 @@ function Encuesta({ datos }) {
   };
 
   const reiniciarEncuesta = () => {
-    setSeccionActualIndex(0);
+    setSeccionActualIndex(-1);
     setRespuestas(Array.from({ length: cantidadSecciones }, () => ({})));
     setPuntuacionTotalSecciones([]);
     setMostrarResultados(false);
@@ -78,8 +78,72 @@ function Encuesta({ datos }) {
     <div className="quiz">
       {seccionActualIndex === -1 && (
         <div className="quiz__welcome">
-          <h3>Bienvenido a la autoevaluación de administración de conocimientos</h3>
+          <h2>Bienvenido a la autoevaluación de administración de conocimientos</h2>
           <p>Por favor, responda las siguientes preguntas de los instrumentos de autoevaluación.</p>
+          <div className="quiz__welcome__form">
+            <div className="quiz__welcome__form--container">
+              <div>
+                <label for="area-funcional">Área Funcional</label>
+                <input type="text" id="area-funcional" name="area-funcional" size="30" />
+              </div>
+
+              <div>
+                <label for="area-funcional-codigo">Código</label>
+                <input type="text" id="area-funcional-codigo" name="area-funcional-codigo" size="10" />
+              </div>
+            </div>
+
+            <div className="quiz__welcome__form--container">
+              <div>
+                <label for="puesto-de-trabajo">Puesto de Trabajo:</label>
+                <input type="text" id="puesto-de-trabajo" name="puesto-de-trabajo" size="30" />
+              </div>
+              <div>
+                <label for="puesto-de-trabajo-codigo">Código</label>
+                <input type="text" id="puesto-de-trabajo-codigo" name="puesto-de-trabajo-codigo" size="10" />
+              </div>
+            </div>
+            <div className="quiz__welcome__form--container">
+              <div>
+                <label for="unidad-responsable">Unidad Responsable de Estudio:</label>
+                <input type="text" id="unidad-responsable" name="unidad-responsable" size="30" />
+              </div>
+              <div>
+                <label for="unidad-responsable-codigo">Código</label>
+                <input type="text" id="unidad-responsable-codigo" name="unidad-responsable-codigo" size="10" />
+              </div>
+            </div>
+            <div className="quiz__welcome__form--container">
+              <div>
+                <label for="fecha-autoevaluación">Fecha Autoevaluación</label>
+                <input type="date" id="fecha-autoevaluación" name="fecha-autoevaluación" size="40" />
+              </div>
+              <div>
+                <label for="fecha-actualizacion">Fecha de Actualización</label>
+                <input type="date" id="fecha-actualizacion" name="fecha-actualizacion" size="40" />
+              </div>
+            </div>
+
+          </div>
+
+          <div className="quiz__welcome__block">
+            <h4>Indicaciones</h4>
+            <p>El presente instrumento de autoevaluación deberá ser completado por los gerentes o directores de las áreas
+              funcionales, chequear la opción seleccionada en el sistema de calificación.
+            </p>
+          </div>
+
+          <div className="quiz__welcome__block">
+            <h4>Sistema de Calificación</h4>
+            <p>
+              <strong>Excelente:</strong> Sobresale por sus óptimas habilidades y competencias en el desarrollo de las diferentes áreas <br />
+              <strong>Muy Bueno:</strong> Responde con eficiencia a las actividades que desarrolla <br />
+              <strong>Bueno:</strong> Posee un desempeño normal <br />
+              <strong>Regular:</strong> Se le dificulta responder de forma eficiente ante la habilidad y competencia presentada <br />
+              <strong>Deficiente:</strong> Un bajo rendimiento en sus capacidades o habilidades <br />
+            </p>
+          </div>
+          
           <button className="button-9" onClick={() => setSeccionActualIndex(0)}>Comenzar autoevaluación</button>
         </div>
       )}
@@ -105,7 +169,7 @@ function Encuesta({ datos }) {
                       </label>
                     ))}
                   </div>
-                  <p>Valor de respuesta: {respuestas[seccionActualIndex]?.[componenteIndex]?.[preguntaIndex]}</p>
+                  {/* <p>Valor de respuesta: {respuestas[seccionActualIndex]?.[componenteIndex]?.[preguntaIndex]}</p> */}
                 </div>
               ))}
               <hr />
@@ -124,7 +188,7 @@ function Encuesta({ datos }) {
       {mostrarResultados && (
         <div>
           <h3>Resultados</h3>
-          <h4>Puntuación Total por Sección</h4>
+          <h4>Puntuación Total por Instrumento</h4>
           <ul>
             {puntuacionTotalSecciones.map((seccion) => (
               <li key={seccion.id}>
@@ -132,9 +196,9 @@ function Encuesta({ datos }) {
               </li>
             ))}
           </ul>
-          <h4>Puntuación Global</h4>
+          <h4>Puntuación Total</h4>
           <p>{calcularPuntuacionGlobal()}</p>
-          <button onClick={reiniciarEncuesta}>Reiniciar Encuesta</button>
+          <button className="button-9" onClick={reiniciarEncuesta}>Reiniciar Encuesta</button>
         </div>
       )}
     </div>
